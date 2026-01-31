@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require("axios");
 let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
@@ -109,11 +110,7 @@ public_users.get('/books/review/:isbn',function (req, res) {
   return getBookReviewHandler(req, res);
 });
 
-module.exports.general = public_users;
-
 // Task 11: Axios-based client helpers (async/await)
-const axios = require("axios");
-
 const getAllBooks = async () => {
   try {
     const response = await axios.get("http://localhost:5000/books");
@@ -154,7 +151,10 @@ const getBooksByTitle = async (title) => {
   }
 };
 
-module.exports.getAllBooks = getAllBooks;
-module.exports.getBookByISBN = getBookByISBN;
-module.exports.getBooksByAuthor = getBooksByAuthor;
-module.exports.getBooksByTitle = getBooksByTitle;
+module.exports = {
+  general: public_users,
+  getAllBooks,
+  getBookByISBN,
+  getBooksByAuthor,
+  getBooksByTitle,
+};
