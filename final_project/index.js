@@ -33,6 +33,7 @@ const authMiddleware = (req, res, next) => {
 
 app.use("/customer/auth/*", authMiddleware);
 app.use("/auth/*", authMiddleware);
+app.use("/review/*", authMiddleware);
  
 const PORT =5000;
 

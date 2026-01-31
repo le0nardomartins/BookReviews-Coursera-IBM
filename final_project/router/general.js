@@ -115,27 +115,43 @@ module.exports.general = public_users;
 const axios = require("axios");
 
 const getAllBooks = async () => {
-  const response = await axios.get("http://localhost:5000/books");
-  return response.data;
+  try {
+    const response = await axios.get("http://localhost:5000/books");
+    return response.data;
+  } catch (error) {
+    return { error: error.message };
+  }
 };
 
 const getBookByISBN = async (isbn) => {
-  const response = await axios.get(`http://localhost:5000/books/isbn/${isbn}`);
-  return response.data;
+  try {
+    const response = await axios.get(`http://localhost:5000/books/isbn/${isbn}`);
+    return response.data;
+  } catch (error) {
+    return { error: error.message };
+  }
 };
 
 const getBooksByAuthor = async (author) => {
-  const response = await axios.get(
-    `http://localhost:5000/books/author/${encodeURIComponent(author)}`
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/books/author/${encodeURIComponent(author)}`
+    );
+    return response.data;
+  } catch (error) {
+    return { error: error.message };
+  }
 };
 
 const getBooksByTitle = async (title) => {
-  const response = await axios.get(
-    `http://localhost:5000/books/title/${encodeURIComponent(title)}`
-  );
-  return response.data;
+  try {
+    const response = await axios.get(
+      `http://localhost:5000/books/title/${encodeURIComponent(title)}`
+    );
+    return response.data;
+  } catch (error) {
+    return { error: error.message };
+  }
 };
 
 module.exports.getAllBooks = getAllBooks;
